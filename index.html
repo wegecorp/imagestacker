@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary Meta Tags -->
+    <title>Image Stacker by Wege - Stack and Align Images Online</title>
+    <meta name="title" content="Image Stacker by Wege - Stack and Align Images Online">
+    <meta name="description" content="Free online tool to stack and align multiple images. Upload PNG, JPEG, WebP, or GIF images and create perfectly aligned stacked compositions. No registration required.">
+    <meta name="keywords" content="image stacker, image alignment, image composition, photo stacking, image editor, online image tool, image layers">
+    <meta name="author" content="Wege">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="Image Stacker by Wege - Stack and Align Images Online">
+    <meta property="og:description" content="Free online tool to stack and align multiple images. Upload PNG, JPEG, WebP, or GIF images and create perfectly aligned stacked compositions.">
+    <meta property="og:image" content="https://your-domain.com/preview-image.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://your-domain.com/">
+    <meta property="twitter:title" content="Image Stacker by Wege - Stack and Align Images Online">
+    <meta property="twitter:description" content="Free online tool to stack and align multiple images. Upload PNG, JPEG, WebP, or GIF images and create perfectly aligned stacked compositions.">
+    <meta property="twitter:image" content="https://your-domain.com/preview-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Image Stacker by Wege",
+        "description": "Free online tool to stack and align multiple images. Upload PNG, JPEG, WebP, or GIF images and create perfectly aligned stacked compositions.",
+        "url": "https://your-domain.com",
+        "applicationCategory": "Image Editor",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Stack multiple images",
+            "Support for PNG, JPEG, WebP, and GIF formats",
+            "Precise position control",
+            "Instant preview",
+            "Free to use"
+        ]
+    }
+    </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .brand-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .brand-header h1 {
+            color: #333;
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .brand-header .tagline {
+            color: #666;
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .brand-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .brand-footer a {
+            color: #2196F3;
+            text-decoration: none;
+        }
+
+        .brand-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .upload-section {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .preview-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .preview-container {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .preview-box {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .preview-box h3 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .preview-canvas {
+            max-width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #finalPreview {
+            max-width: 100%;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #2196F3;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .file-label:hover {
+            background-color: #1976D2;
+        }
+
+        .position-controls {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        .slider-container {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-container label {
+            min-width: 100px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .value-display {
+            min-width: 50px;
+            text-align: right;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #2196F3;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .success-message {
+            color: #2e7d32;
+            background: #e8f5e9;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            display: none;
+        }
+
+        .file-info {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .format-info {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .supported-formats {
+            font-size: 0.8em;
+            color: #2196F3;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p>Processing image...</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header class="brand-header">
+            <h1>Image Stacker</h1>
+            <div class="tagline">by Wege</div>
+        </header>
+        
+        <main class="container">
+            <section class="upload-section" aria-label="Image Upload">
+                <div>
+                    <input type="file" id="firstImageInput" class="file-input" accept="image/*">
+                    <label for="firstImageInput" class="file-label">Choose First Image (Base Layer)</label>
+                    <div class="supported-formats">Supported formats: PNG, JPEG, WebP, GIF</div>
+                    <div class="file-info" id="firstImageInfo"></div>
+                    <div class="error-message" id="firstImageError" role="alert"></div>
+                </div>
+                <div>
+                    <input type="file" id="secondImageInput" class="file-input" accept="image/*">
+                    <label for="secondImageInput" class="file-label">Choose Second Image (Sets Size)</label>
+                    <div class="supported-formats">Supported formats: PNG, JPEG, WebP, GIF</div>
+                    <div class="file-info" id="secondImageInfo"></div>
+                    <div class="error-message" id="secondImageError" role="alert"></div>
+                </div>
+            </section>
+
+            <section class="preview-container" aria-label="Image Previews">
+                <div class="preview-box">
+                    <h2>First Image (Base Layer)</h2>
+                    <canvas id="firstImagePreview" class="preview-canvas"></canvas>
+                </div>
+                <div class="preview-box">
+                    <h2>Second Image (Size Reference)</h2>
+                    <canvas id="secondImagePreview" class="preview-canvas"></canvas>
+                </div>
+            </section>
+
+            <section class="position-controls" aria-label="Position Controls">
+                <h2>Crop Position Controls</h2>
+                <div class="slider-container">
+                    <label for="xPosition">X Position:</label>
+                    <input type="range" id="xPosition" min="0" max="100" value="50" aria-label="X Position Control">
+                    <span class="value-display" id="xValue">50%</span>
+                </div>
+                <div class="slider-container">
+                    <label for="yPosition">Y Position:</label>
+                    <input type="range" id="yPosition" min="0" max="100" value="50" aria-label="Y Position Control">
+                    <span class="value-display" id="yValue">50%</span>
+                </div>
+                <div class="slider-container">
+                    <label for="zoomLevel">Zoom:</label>
+                    <input type="range" id="zoomLevel" min="50" max="200" value="100" aria-label="Zoom Control">
+                    <span class="value-display" id="zoomValue">100%</span>
+                </div>
+            </section>
+
+            <section class="preview-section" aria-label="Final Result">
+                <h2>Final Stacked Result</h2>
+                <canvas id="finalPreview"></canvas>
+                <br>
+                <button id="downloadBtn" class="button" disabled>Download Stacked Image</button>
+            </section>
+        </main>
+
+        <footer class="brand-footer">
+            <p>Image Stacker by Wege &copy; 2024</p>
+            <p>A simple tool for stacking and aligning images with precision</p>
+        </footer>
+    </div>
+
+    <script>
+        // Get DOM elements
+        const firstImageInput = document.getElementById('firstImageInput');
+        const secondImageInput = document.getElementById('secondImageInput');
+        const firstImagePreview = document.getElementById('firstImagePreview');
+        const secondImagePreview = document.getElementById('secondImagePreview');
+        const finalPreview = document.getElementById('finalPreview');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const xPosition = document.getElementById('xPosition');
+        const yPosition = document.getElementById('yPosition');
+        const zoomLevel = document.getElementById('zoomLevel');
+        const xValue = document.getElementById('xValue');
+        const yValue = document.getElementById('yValue');
+        const zoomValue = document.getElementById('zoomValue');
+
+        // Get contexts
+        const firstCtx = firstImagePreview.getContext('2d');
+        const secondCtx = secondImagePreview.getContext('2d');
+        const finalCtx = finalPreview.getContext('2d');
+
+        // Store images
+        let firstImage = null;
+        let secondImage = null;
+        let standardWidth = 0;
+        let standardHeight = 0;
+
+        const loadingOverlay = document.querySelector('.loading-overlay');
+        const firstImageInfo = document.getElementById('firstImageInfo');
+        const secondImageInfo = document.getElementById('secondImageInfo');
+        const firstImageError = document.getElementById('firstImageError');
+        const secondImageError = document.getElementById('secondImageError');
+
+        // Supported image formats
+        const SUPPORTED_FORMATS = ['image/png', 'image/jpeg', 'image/webp', 'image/gif'];
+
+        function isValidImageFormat(file) {
+            return SUPPORTED_FORMATS.includes(file.type);
+        }
+
+        function getFormatInfo(file) {
+            const format = file.type.split('/')[1].toUpperCase();
+            const size = (file.size / 1024).toFixed(2);
+            return `File: ${file.name} (${size} KB) - Format: ${format}`;
+        }
+
+        function showLoading() {
+            loadingOverlay.style.display = 'flex';
+        }
+
+        function hideLoading() {
+            loadingOverlay.style.display = 'none';
+        }
+
+        function showError(element, message) {
+            element.textContent = message;
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        function showFileInfo(element, file) {
+            element.textContent = getFormatInfo(file);
+        }
+
+        function loadImage(file) {
+            return new Promise((resolve, reject) => {
+                // Check file size (10MB limit)
+                if (file.size > 10 * 1024 * 1024) {
+                    reject("File is too large. Please use images under 10MB.");
+                    return;
+                }
+
+                // Validate format
+                if (!isValidImageFormat(file)) {
+                    reject("Unsupported file format. Please use PNG, JPEG, WebP, or GIF.");
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => resolve(img);
+                    img.onerror = () => reject("Failed to load image. The file may be corrupted.");
+                    img.src = e.target.result;
+                };
+                reader.onerror = () => reject("Failed to read the file. Please try again.");
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Draw image on canvas with preview size
+        function drawPreviewImage(img, canvas, ctx) {
+            const maxSize = 300;
+            const scale = Math.min(maxSize / img.width, maxSize / img.height);
+            const width = img.width * scale;
+            const height = img.height * scale;
+            
+            canvas.width = width;
+            canvas.height = height;
+            ctx.drawImage(img, 0, 0, width, height);
+        }
+
+        // Handle first image selection
+        firstImageInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                showLoading();
+                firstImageError.style.display = 'none';
+                try {
+                    firstImage = await loadImage(file);
+                    drawPreviewImage(firstImage, firstImagePreview, firstCtx);
+                    updateFinalPreview();
+                    showFileInfo(firstImageInfo, file);
+                } catch (error) {
+                    console.error("Error loading first image:", error);
+                    showError(firstImageError, error);
+                    firstImage = null;
+                } finally {
+                    hideLoading();
+                }
+            }
+        });
+
+        // Handle second image selection
+        secondImageInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                showLoading();
+                secondImageError.style.display = 'none';
+                try {
+                    secondImage = await loadImage(file);
+                    drawPreviewImage(secondImage, secondImagePreview, secondCtx);
+                    
+                    // Set standard dimensions
+                    standardWidth = secondImage.width;
+                    standardHeight = secondImage.height;
+                    finalPreview.width = standardWidth;
+                    finalPreview.height = standardHeight;
+                    
+                    updateFinalPreview();
+                    showFileInfo(secondImageInfo, file);
+                } catch (error) {
+                    console.error("Error loading second image:", error);
+                    showError(secondImageError, error);
+                    secondImage = null;
+                } finally {
+                    hideLoading();
+                }
+            }
+        });
+
+        // Update position value displays
+        xPosition.addEventListener('input', (e) => {
+            xValue.textContent = `${e.target.value}%`;
+            updateFinalPreview();
+        });
+
+        yPosition.addEventListener('input', (e) => {
+            yValue.textContent = `${e.target.value}%`;
+            updateFinalPreview();
+        });
+
+        zoomLevel.addEventListener('input', (e) => {
+            zoomValue.textContent = `${e.target.value}%`;
+            updateFinalPreview();
+        });
+
+        // Update the final stacked preview
+        function updateFinalPreview() {
+            if (!firstImage || !secondImage) {
+                downloadBtn.disabled = true;
+                return;
+            }
+
+            finalCtx.clearRect(0, 0, finalPreview.width, finalPreview.height);
+
+            // Calculate crop position based on sliders
+            const xPercent = xPosition.value / 100;
+            const yPercent = yPosition.value / 100;
+            const zoom = zoomLevel.value / 100;
+            
+            // Calculate dimensions with zoom
+            const zoomedWidth = firstImage.width * zoom;
+            const zoomedHeight = firstImage.height * zoom;
+            
+            // Calculate source coordinates for cropping with zoom
+            const sourceX = (zoomedWidth - standardWidth) * xPercent;
+            const sourceY = (zoomedHeight - standardHeight) * yPercent;
+
+            // Draw first image (cropped to second image size)
+            finalCtx.drawImage(
+                firstImage,
+                sourceX / zoom, sourceY / zoom, standardWidth / zoom, standardHeight / zoom,
+                0, 0, standardWidth, standardHeight
+            );
+
+            // Draw second image
+            finalCtx.drawImage(secondImage, 0, 0);
+
+            downloadBtn.disabled = false;
+        }
+
+        // Handle download button click
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'stacked-image.png';
+            link.href = finalPreview.toDataURL('image/png');
+            link.click();
+        });
+    </script>
+</body>
+</html> 
